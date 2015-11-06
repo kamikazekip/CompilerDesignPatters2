@@ -1,4 +1,5 @@
-﻿using prahSC.CompilerClasses.Operator;
+﻿using prahSC.CompilerClasses.If;
+using prahSC.CompilerClasses.Operator;
 using prahSC.TokenizerClasses;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,8 @@ namespace prahSC.CompilerClasses
             this.compilers.Add(new CompiledCondition());
             this.compilers.Add(new CompiledConstant());
             this.compilers.Add(new CompiledPrint());
+            this.compilers.Add(new CompiledUnairyOperator());
+            this.compilers.Add(new CompiledIfGeneral());
         }
 
         public CompiledStatement CreateCompiledStatement(LinkedListNode<Token> currentToken)

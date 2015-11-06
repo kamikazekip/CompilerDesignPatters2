@@ -11,8 +11,16 @@ namespace prahSC.VirtualMachineClasses.Commands
     {
         public override void execute(VirtualMachine vm, IList<string> parameters)
         {
-            string toPrint = vm.getVariable(parameters[1]).getValue();
-            Console.WriteLine(toPrint);
+            int number;
+            bool isNumeric = int.TryParse(parameters[1], out number);
+            if (isNumeric)
+                Console.WriteLine(number);
+            else
+            {
+                string toPrint = vm.getVariable(parameters[1]).getValue();
+                Console.WriteLine(toPrint);
+            }
+            
         }
     }
 }

@@ -50,7 +50,6 @@ namespace prahSC.CompilerClasses
                         throw new Exception(String.Format("Unexpected end of statement, expected {0}", expectation.TokenType));
                     else
                     {
-                        Console.WriteLine(currentToken.Value.getValue());
                         if(currentToken.Next != null)
                             currentToken = currentToken.Next;
                     }
@@ -91,22 +90,6 @@ namespace prahSC.CompilerClasses
             _conditionalJump.setOnFalse(_compiledStatement.getLast());
 
             compiled.addLast(_compiledStatement);
-            /*
-              var conditionalJumpNode = new ConditionalJumpNode();
-            var jumpBackNode = new JumpNode();
-
-            _compiledStatement.Add(new DoNothingNode());
-            _compiledStatement.Add(_condition);
-            _compiledStatement.Add(conditionalJumpNode); // De body komt dus rechtstreeks na de conditionalJumpNode (dus op de .Next property)
-            _compiledStatement.Add(_body);
-            _compiledStatement.Add(jumpBackNode);
-            _compiledStatement.Add(new DoNothingNode());
-
-
-            jumpBackNode.JumpToNode = _compiledStatement.First; // JumpToNode is een extra property ten opzichte van andere nodes.
-            conditionalJumpNode.NextOnTrue = _body.First; // NextOnTrue en NextOnFalse zijn extra properties ten opzichte van andere nodes.
-            conditionalJumpNode.NextOnFalse = _compiledStatement.Last;
-             */
         }
 
         public override CompiledStatement Clone()

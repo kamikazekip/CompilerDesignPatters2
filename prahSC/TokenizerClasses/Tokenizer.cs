@@ -63,21 +63,33 @@ namespace prahSC.TokenizerClasses
 
         public void tokenize(String codeLine, int lineNumber)
         {
+            Boolean hasSemicolon = false;
             int linePosition = 0;
             String[] codeWords = codeLine.Split(' ');
             foreach (String word in codeWords)
             {
+                String newWord = word;
                 if (!word.Equals(""))
                 {
+                    if (word.EndsWith(";"))
+                    {
+                        newWord = Regex.Replace(word, @";", "");
+                        hasSemicolon = true;
+                    }
                     linePosition++;
-                    if (word.Equals("}") || word.Equals(")") || word.Equals("]"))
+                    if (newWord.Equals("}") || newWord.Equals(")") || newWord.Equals("]"))
                         this.currentLevel--;
 
-                    string newWord = Regex.Replace(word, @"\t|\n|\r", "");
+                    newWord = Regex.Replace(newWord, @"\t|\n|\r", "");
                     Token token = new Token(this.currentPosition, lineNumber, linePosition, newWord, this.currentLevel);
                     this.tokens.Add(token);
 
-                    if (word.Equals("{") || word.Equals("(") || word.Equals("["))
+                    if(hasSemicolon){
+                        Token semicolon = new Token(this.currentPosition, lineNumber, linePosition, ";", this.currentLevel);
+                        this.tokens.Add(semicolon);
+                    }
+
+                    if (newWord.Equals("{") || newWord.Equals("(") || newWord.Equals("["))
                         this.currentLevel++;   
                 }
             }

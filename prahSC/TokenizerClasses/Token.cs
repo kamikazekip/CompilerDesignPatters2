@@ -12,8 +12,8 @@ namespace prahSC.TokenizerClasses
         private int position { get; set; }
         private int lineNumber { get; set; }
         private int linePosition { get; set; }
-        public enum Type { Identifier, Equals, Assign, Plus, Minus, Multiply, Divide, Number, Semicolon, While, If, EllipsisOpen, GreaterEquals, IsNot, EllipsisClose,
-        BracketsOpen, BracketsClose, BlockOpen, BlockClose, PrintFunction, Any }
+        public enum Type { Identifier, Equals, Assign, Plus, Minus, Multiply, Divide, Number, Semicolon, While, If, EllipsisOpen, GreaterEquals, IsNot, GreaterThan,
+            SmallerThan, SmallerEquals, EllipsisClose, BracketsOpen, BracketsClose, BlockOpen, BlockClose, PrintFunction, UnairyPlus, UnairyMinus, Any }
         public Type tokentype { get; set; }
         private String value { get; set; }
         private int level { get; set; }
@@ -38,6 +38,11 @@ namespace prahSC.TokenizerClasses
                 types["("] = Type.EllipsisOpen;
                 types[">="] = Type.GreaterEquals;
                 types["!="] = Type.IsNot;
+                types["<="] = Type.SmallerEquals;
+                types["++"] = Type.UnairyPlus;
+                types["--"] = Type.UnairyMinus;
+                types[">"] = Type.GreaterThan;
+                types["<"] = Type.SmallerThan;
                 types[")"] = Type.EllipsisClose;
                 types["{"] = Type.BracketsOpen;
                 types["}"] = Type.BracketsClose;

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace prahSC.CompilerClasses.Operator
 {
-    public class CompiledMinus : CompiledOperator
+    public class CompiledMinus : CompiledStatement
     {
         public override void Compile(ref LinkedListNode<Token> currentToken)
         {
@@ -40,10 +40,6 @@ namespace prahSC.CompilerClasses.Operator
 
             compiled.addLast(new FunctionCall("Subtract", leftVariable, rightVariable));
             compiled.addLast(new DoNothing());
-
-            /* De factory bepaalt wat er verder gebeurt. 
-            CompiledStatement rightCompiled = CompilerFactory.getInstance().CreateCompiledStatement(currentToken);
-            rightCompiled.Compile(ref currentToken); */
         }
 
         public override CompiledStatement Clone()

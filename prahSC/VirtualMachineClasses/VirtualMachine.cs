@@ -45,6 +45,9 @@ namespace prahSC.VirtualMachineClasses
                 currentNode.accept(visitor);
                 currentNode = visitor.nextNode;
             }
+            Console.WriteLine("");
+            Console.WriteLine("<------ Einde programma ------>");
+            Console.WriteLine("");
         }
 
         public void setVariable(string key, Variable variable)
@@ -64,12 +67,17 @@ namespace prahSC.VirtualMachineClasses
 
         private void initialiseCommands()
         {
-            _commands.Add("ConstantToReturn", new ConstantToReturnCommand());
-            _commands.Add("ReturnToVariable", new ReturnToVariableCommand());
-            _commands.Add("Print", new PrintCommand());
-            _commands.Add("Add", new AddCommand());
-            _commands.Add("Subtract", new SubtractCommand());
-            _commands.Add("IsNot", new IsNotCommand());
+            _commands.Add("ConstantToReturn",   new ConstantToReturnCommand());
+            _commands.Add("ReturnToVariable",   new ReturnToVariableCommand());
+            _commands.Add("Print",              new PrintCommand());
+            _commands.Add("Add",                new AddCommand());
+            _commands.Add("Subtract",           new SubtractCommand());
+            _commands.Add("IsNot",              new IsNotCommand());
+            _commands.Add("Equals",             new EqualsCommand());
+            _commands.Add("GreaterThan",        new GreaterThanCommand());
+            _commands.Add("SmallerThan",        new SmallerThanCommand());
+            _commands.Add("SmallerEquals",      new SmallerEqualsCommand());
+            _commands.Add("GreaterEquals",      new GreaterEqualsCommand());
         }
     }
 }

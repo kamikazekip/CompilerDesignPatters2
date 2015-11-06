@@ -44,20 +44,7 @@ namespace prahSC.CompilerClasses
                 this.compiled.addLast(new DirectFunctionCall("ReturnToVariable", rightName));
             }
 
-            switch (operatorToken.tokentype)
-            {
-                case (Token.Type.Equals): 
-                    this.compiled.addLast(new FunctionCall("AreEqual", leftName, rightName));
-                    break;
-                case(Token.Type.GreaterEquals):
-                    this.compiled.addLast(new FunctionCall("GreaterThan", leftName, rightName));
-                    break;
-                case(Token.Type.IsNot):
-                    this.compiled.addLast(new FunctionCall("IsNot", leftName, rightName));
-                    break;
-                default:
-                    break;
-            }
+            this.compiled.addLast(new FunctionCall(operatorToken.tokentype.ToString(), leftName, rightName));
             this.compiled.addLast(new DoNothing());
         }
 
